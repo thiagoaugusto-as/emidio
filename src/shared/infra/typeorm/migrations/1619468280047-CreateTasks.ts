@@ -25,6 +25,10 @@ export class CreateTasks1619468280047 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
+                        name: "title",
+                        type: "varchar"
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()"
