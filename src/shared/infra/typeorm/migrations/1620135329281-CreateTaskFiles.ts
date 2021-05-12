@@ -13,12 +13,12 @@ export class CreateTaskFiles1620135329281 implements MigrationInterface {
                 },
                 {
                     name: "user_id",
-                    type: "varchar",
+                    type: "uuid",
                     isUnique: true
                 },
                 {
                     name: "task_id",
-                    type: "varchar",
+                    type: "uuid",
                     isUnique: true
                 },
                 {
