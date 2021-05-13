@@ -37,19 +37,22 @@ export class CreateTaskFiles1620135329281 implements MigrationInterface {
             columnNames: ["user_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "users",
-            onDelete: "CASCADE"
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE"
         }));
 
         await queryRunner.createForeignKey("task_files", new TableForeignKey({
             columnNames: ["task_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "tasks",
-            onDelete: "CASCADE"
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE"
         }));
 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+
         await queryRunner.dropTable("task_files");
     }
 

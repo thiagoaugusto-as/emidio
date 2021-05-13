@@ -13,7 +13,7 @@ export async function ensureIsProfessor(
 
     const user = await usersRepository.findById(id);
 
-    if(!user.isProfessor) {
+    if(!user.isProfessor || !user.isAdmin) {
         throw new AppError("User isn' professor!", 401);
     }
 

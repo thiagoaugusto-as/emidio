@@ -33,7 +33,6 @@ class User {
         }
         this.isAdmin = false;
         this.isProfessor = false;
-        this.avatar = "default"
     }
 }
 

@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateTasks1619468280047 implements MigrationInterface {
+export class CreateTableSendedTask1620842714115 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "tasks",
+                name: "sended_task",
                 columns: [
                     {
                         name: "id",
@@ -13,20 +13,21 @@ export class CreateTasks1619468280047 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: "discipline",
-                        type: "varchar"
+                        name: "task_id",
+                        type: "uuid",
                     },
                     {
-                        name: "pet",
-                        type: "varchar"
+                        name: "files_id",
+                        type: "uuid",
                     },
                     {
-                        name: "description",
-                        type: "varchar"
+                        name: "student_id",
+                        type: "uuid",
                     },
                     {
-                        name: "title",
-                        type: "varchar"
+                        name: "rating",
+                        type: "varchar",
+                        isNullable: true
                     },
                     {
                         name: "class_id",
@@ -55,6 +56,30 @@ export class CreateTasks1619468280047 implements MigrationInterface {
                         columnNames: ["class_id"],
                         onDelete: "CASCADE",
                         onUpdate: "CASCADE"
+                    },
+                    {
+                        name: "FKTaskID",
+                        referencedTableName: "tasks",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["task_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE"
+                    },
+                    {
+                        name: "FKFilesID",
+                        referencedTableName: "task_files",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["files_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE"
+                    },
+                    {
+                        name: "FKStudentID",
+                        referencedTableName: "users",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["student_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE"
                     }
                 ]
             })
@@ -62,7 +87,7 @@ export class CreateTasks1619468280047 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("tasks")
+        await queryRunner.dropTable("sended_task")
     }
 
 }
