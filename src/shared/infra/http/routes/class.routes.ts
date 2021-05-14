@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateClassController } from "../../../../modules/class/useCases/CreateClassController";
+import { CreateClassController } from "../../../../modules/class/useCases/CreateClass/CreateClassController";
 
 const classRoutes = Router();
 

@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../shared/errors/AppError";
-import { UsersRepository } from "../../accounts/infra/typeorm/repositories/UsersRepository";
-import { ICreateClassDTO } from "../../dtos/ICreateClassDTO";
-import { ClassRepository } from "../infra/typeorm/repositories/ClassRepository";
-import { IResponseClassDTO } from "../mapper/IClassResponseDTO";
+import { AppError } from "../../../../shared/errors/AppError";
+import { UsersRepository } from "../../../accounts/infra/typeorm/repositories/UsersRepository";
+import { ICreateClassDTO } from "../../../dtos/ICreateClassDTO";
+import { ClassRepository } from "../../infra/typeorm/repositories/ClassRepository";
+import { IResponseClassDTO } from "../../mapper/IClassResponseDTO";
 
 @injectable()
 class CreateClassUseCase {
