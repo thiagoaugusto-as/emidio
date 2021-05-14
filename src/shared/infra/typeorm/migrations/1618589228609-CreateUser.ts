@@ -26,6 +26,11 @@ export class CreateUser1618589228609 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
+                        name: "class_id",
+                        type: "uuid",
+                        isNullable: true
+                    },
+                    {
                         name: "isProfessor",
                         type: "boolean",
                         default: false

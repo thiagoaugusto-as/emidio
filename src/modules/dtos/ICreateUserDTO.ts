@@ -3,4 +3,5 @@ export interface ICreateUserDTO {
     userName: string;
     password: string;
     avatar?:string;
+    class_id: string;
 }

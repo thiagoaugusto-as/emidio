@@ -12,11 +12,11 @@ export class CreateClass1619468280045 implements MigrationInterface {
                         type: "uuid",
                         isPrimary: true
                     },
-                    {
-                        name: "student_id",
-                        type: "uuid",
-                        isUnique: true
-                    },
+                    // {
+                    //     name: "student_id",
+                    //     type: "uuid",
+                    //     isNullable: true
+                    // },
                     {
                         name: "professor_id",
                         type: "uuid",
@@ -37,14 +37,14 @@ export class CreateClass1619468280045 implements MigrationInterface {
                     }
                 ],
                 foreignKeys: [
-                    {
-                        name: "FKStudentID",
-                        referencedTableName: "users",
-                        referencedColumnNames: ["id"],
-                        columnNames: ["student_id"],
-                        onDelete: "CASCADE",
-                        onUpdate: "CASCADE"
-                    },
+                    // {
+                    //     name: "FKStudentID",
+                    //     referencedTableName: "users",
+                    //     referencedColumnNames: ["id"],
+                    //     columnNames: ["student_id"],
+                    //     onDelete: "CASCADE",
+                    //     onUpdate: "CASCADE"
+                    // },
                     {
                         name: "FKProfessorID",
                         referencedTableName: "users",

@@ -49,7 +49,7 @@ export class CreateTasks1619468280047 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        name: "FKClassID",
+                        name: "FKClass",
                         referencedTableName: "class",
                         referencedColumnNames: ["id"],
                         columnNames: ["class_id"],

@@ -17,7 +17,8 @@ class CreateUserUseCase {
         name,
         password,
         userName,
-        avatar
+        avatar,
+        class_id
     }: ICreateUserDTO): Promise<IUserResponseDTO> {
         const userAlreadyExists = await this.usersRepository.findByUserName(
             userName
@@ -33,7 +34,8 @@ class CreateUserUseCase {
             name,
             password: passwordHash,
             userName,
-            avatar
+            avatar,
+            class_id
         });
 
         return user;

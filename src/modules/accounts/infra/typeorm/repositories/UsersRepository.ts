@@ -17,13 +17,14 @@ class UsersRepository implements IUsersRepository {
         password,
         userName,
         avatar,
-
+        class_id
     }: ICreateUserDTO): Promise<IUserResponseDTO> {
         const user = this.repository.create({
             name,
             password,
             userName,
-            avatar
+            avatar,
+            class_id
         });
 
         await this.repository.save(user);
@@ -44,6 +45,13 @@ class UsersRepository implements IUsersRepository {
 
         return user;
     }
+
+    async findByIds(user_ids: string[]): Promise<User[]> {
+        const users = await this.repository.findByIds(user_ids);
+
+        return users;
+    }
+
 }
 
 export { UsersRepository }

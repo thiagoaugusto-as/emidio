@@ -8,6 +8,8 @@ import { TasksRepository } from "../../modules/task/infra/typeorm/repositories/T
 import { ITasksRepository } from "../../modules/task/repositories/ITaskRepository";
 import { ITaskFileRepository } from "../../modules/task/repositories/ITaskFileRepository";
 import { TaskFileRepository } from "../../modules/task/infra/typeorm/repositories/TaskFileRepository";
+import { ClassRepository } from "../../modules/class/infra/typeorm/repositories/ClassRepository";
+import { IClassRepository } from "../../modules/class/repositories/IClassRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -22,4 +24,9 @@ container.registerSingleton<ITasksRepository>(
 container.registerSingleton<ITaskFileRepository>(
     "TaskFileRepository",
     TaskFileRepository
+);
+
+container.registerSingleton<IClassRepository>(
+    "ClassRepository",
+    ClassRepository
 );

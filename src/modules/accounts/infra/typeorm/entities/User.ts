@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { Class } from "../../../../class/infra/typeorm/entities/Class";
 
 @Entity("users")
 class User {
@@ -23,6 +24,13 @@ class User {
 
     @Column()
     avatar: string;
+
+    @Column()
+    class_id: string;
+
+    @ManyToOne(() => Class, classe => classe.students, { eager: true })
+    @JoinColumn({name: "class_id"})
+    classe: Class;
 
     @CreateDateColumn()
     created_at: Date;
