@@ -8,6 +8,7 @@ import { ensureIsProfessor } from "../middlewares/ensureIsProfessor";
 
 import uploadConfig from "../../../../config/upload";
 import { ListTasksController } from "../../../../modules/task/useCases/listTasks/ListTasksController";
+import { ListTaskFilesController } from "../../../../modules/task/useCases/listTaskFiles/ListTaskFilesController";
 
 const taskRoutes = Router();
 
@@ -16,13 +17,20 @@ const upload = multer(uploadConfig)
 const createTaskFileController = new CreateTaskFileController()
 const createTaskController = new CreateTaskController();
 const listTaskController = new ListTasksController();
+const listTaskFilesController = new ListTaskFilesController();
 
 taskRoutes.post(
-    "/files/:id",
+    "/files",
     ensureAuthenticated,
     upload.array("files"),
     createTaskFileController.handle
-)
+);
+
+taskRoutes.get(
+    "/files/find",
+    ensureAuthenticated,
+    listTaskFilesController.handle
+);;
 
 taskRoutes.post(
     "/",

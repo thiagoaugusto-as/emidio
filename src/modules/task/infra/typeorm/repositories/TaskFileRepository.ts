@@ -30,6 +30,35 @@ class TaskFileRepository implements ITaskFileRepository {
     async delete(task_file_id: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
+
+    async findTasksFiles(
+        id?: string,
+        user_id?: string,
+        file_name?: string,
+        sended_task_id?: string,
+        task_id?: string
+    ): Promise<TaskFile[]> {
+        const taskFileQuery = this.repository.createQueryBuilder("tf");
+
+        if(id)
+            taskFileQuery.andWhere("tf.id = :id", { id });
+
+        if(user_id)
+            taskFileQuery.andWhere("tf.user_id = :user_id", { user_id });
+
+        if(file_name)
+            taskFileQuery.andWhere("tf.file_name = :file_name", { file_name });
+
+        if(sended_task_id)
+            taskFileQuery.andWhere("tf.sended_task_id = :sended_task_id", { sended_task_id });
+
+        if(task_id)
+            taskFileQuery.andWhere("tf.task_id = :task_id", { task_id });
+
+        const tasksFiles = await taskFileQuery.getMany();
+
+        return tasksFiles;
+    }
 }
 
 export { TaskFileRepository }

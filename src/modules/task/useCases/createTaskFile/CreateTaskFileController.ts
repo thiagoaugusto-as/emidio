@@ -10,11 +10,7 @@ interface IFiles {
 class CreateTaskFileController {
     constructor() {}
     async handle(request: Request, response: Response): Promise<Response> {
-        const { 
-            task_id: task_id, 
-            sended_task_id: sended_task_id 
-        } = request.params;
-
+        const { task_id, sended_task_id } = request.body;
         const { id: user_id } = request.user;
         const files = request.files as IFiles[];
 
