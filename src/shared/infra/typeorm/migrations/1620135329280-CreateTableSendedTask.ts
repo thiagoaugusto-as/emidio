@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateTableSendedTask1620842714115 implements MigrationInterface {
+export class CreateTableSendedTask1620135329280 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -62,14 +62,6 @@ export class CreateTableSendedTask1620842714115 implements MigrationInterface {
                         referencedTableName: "tasks",
                         referencedColumnNames: ["id"],
                         columnNames: ["task_id"],
-                        onDelete: "CASCADE",
-                        onUpdate: "CASCADE"
-                    },
-                    {
-                        name: "FKFilesID",
-                        referencedTableName: "task_files",
-                        referencedColumnNames: ["id"],
-                        columnNames: ["files_id"],
                         onDelete: "CASCADE",
                         onUpdate: "CASCADE"
                     },

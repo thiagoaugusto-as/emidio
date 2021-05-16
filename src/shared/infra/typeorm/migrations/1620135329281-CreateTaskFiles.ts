@@ -13,13 +13,15 @@ export class CreateTaskFiles1620135329281 implements MigrationInterface {
                 },
                 {
                     name: "user_id",
-                    type: "uuid",
-                    isUnique: true
+                    type: "uuid"
                 },
                 {
                     name: "task_id",
-                    type: "uuid",
-                    isUnique: true
+                    type: "uuid"
+                },
+                {
+                    name: "sended_task_id",
+                    type: "uuid"
                 },
                 {
                     name: "file_name",
@@ -30,6 +32,16 @@ export class CreateTaskFiles1620135329281 implements MigrationInterface {
                     type: "timestamp",
                     default: "now()"
                 }
+            ],
+            foreignKeys: [
+                {
+                    name: "FKSendedTaskID",
+                    referencedTableName: "sended_task",
+                    referencedColumnNames: ["id"],
+                    columnNames: ["sended_task_id"],
+                    onDelete: "CASCADE",
+                    onUpdate: "CASCADE"
+                },
             ]
         }))
 
@@ -48,7 +60,6 @@ export class CreateTaskFiles1620135329281 implements MigrationInterface {
             onDelete: "CASCADE",
             onUpdate: "CASCADE"
         }));
-
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
