@@ -8,13 +8,19 @@ class UserMap {
         id,
         name,
         userName,
-        avatar
+        avatar,
+        isProfessor,
+        isAdmin,
+        class_id
     }): IUserResponseDTO {
         const user = classToClass({
             id,
             name,
             userName,
-            avatar
+            avatar,
+            isProfessor,
+            isAdmin,
+            class_id
         })
 
         return user;

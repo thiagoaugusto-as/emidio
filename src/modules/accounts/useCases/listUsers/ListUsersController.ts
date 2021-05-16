@@ -4,13 +4,22 @@ import { ListUsersUseCase } from './ListUsersUseCase';
 
 class ListUserController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { user_id } = request.body;
+        const { name, 
+            userName, 
+            class_id, 
+            isProfessor
+        } = request.body;
 
         const listUserUseCase = container.resolve(ListUsersUseCase);
 
-        const user = await listUserUseCase.execute(user_id);
+        const users = await listUserUseCase.execute(
+            name, 
+            userName, 
+            class_id, 
+            isProfessor
+        );
 
-        return response.json(user);
+        return response.json(users);
     }
 }
 

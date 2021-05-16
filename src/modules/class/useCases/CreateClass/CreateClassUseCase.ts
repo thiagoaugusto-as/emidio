@@ -29,8 +29,6 @@ class CreateClassUseCase {
             throw new AppError(`User with id ${professor_id} must be a professor`)
         }
 
-        //const studentExists = await this.usersRepository.findByIds(student_id);
-
         const classCreated = await this.classRepository.create({
             class_level,
             class_name,

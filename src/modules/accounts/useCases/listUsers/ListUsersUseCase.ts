@@ -9,10 +9,20 @@ class ListUsersUseCase {
         private usersRepository: UsersRepository
     ) {}
 
-    async execute(user_id: string): Promise<User> {
-        const user = await this.usersRepository.findById(user_id);
+    async execute(
+        name: string, 
+        userName: string, 
+        class_id: string, 
+        isProfessor: boolean
+    ): Promise<User[]> {
+        const users = await this.usersRepository.findUsers(
+            name, 
+            userName, 
+            class_id, 
+            isProfessor
+        );
 
-        return user;
+        return users;
     }
 }
 

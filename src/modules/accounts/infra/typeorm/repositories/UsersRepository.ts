@@ -40,10 +40,12 @@ class UsersRepository implements IUsersRepository {
         return user;
     }
 
-    async findById(user_id: string): Promise<User> {
+    async findById(user_id: string): Promise<IUserResponseDTO> {
         const user = await this.repository.findOne({id: user_id})
 
-        return user;
+        const userResponse = UserMap.toDTO(user);
+
+        return userResponse;
     }
 
     async findByIds(user_ids: string[]): Promise<User[]> {
@@ -52,6 +54,31 @@ class UsersRepository implements IUsersRepository {
         return users;
     }
 
+    async findUsers(
+        name?: string, 
+        userName?: string, 
+        class_id?: string, 
+        isProfessor?: boolean
+    ): Promise<User[]> {
+        const userQuery = await this.repository
+            .createQueryBuilder("u")
+
+        if(name)
+            userQuery.andWhere("u.name = :name", { name });
+
+        if(userName)
+            userQuery.andWhere("u.userName = :userName", { userName });
+
+        if(class_id)
+            userQuery.andWhere("u.class_id = :class_id", { class_id });
+
+        if(isProfessor)
+            userQuery.andWhere("u.isProfessor = :isProfessor", { isProfessor });
+
+        const users = await userQuery.getMany();
+
+        return users;
+    }
 }
 
 export { UsersRepository }
