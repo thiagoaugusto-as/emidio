@@ -12,7 +12,7 @@ interface IUsersRepository {
         userName?: string,
         class_id?: string,
         isProfessor?: boolean
-    ): Promise<User[]>
+    ): Promise<IUserResponseDTO[]>
 }
 
 export { IUsersRepository }

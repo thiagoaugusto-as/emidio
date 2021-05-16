@@ -25,6 +25,24 @@ class UserMap {
 
         return user;
     }
+
+    static usersToDTO(users: User[]): IUserResponseDTO[] {
+        const userReturn: IUserResponseDTO[] = [];
+
+        users.map(user => {
+            userReturn.push({
+                    id: user.id,
+                    avatar: user.avatar,
+                    class_id: user.class_id,
+                    isAdmin: user.isAdmin,
+                    isProfessor: user.isProfessor,
+                    name: user.name,
+                    userName: user.userName
+            })
+        })
+
+        return userReturn;
+    }
 }
 
 export { UserMap }

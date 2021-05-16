@@ -59,8 +59,8 @@ class UsersRepository implements IUsersRepository {
         userName?: string, 
         class_id?: string, 
         isProfessor?: boolean
-    ): Promise<User[]> {
-        const userQuery = await this.repository
+    ): Promise<IUserResponseDTO[]> {
+        const userQuery = this.repository
             .createQueryBuilder("u")
 
         if(name)
@@ -77,7 +77,9 @@ class UsersRepository implements IUsersRepository {
 
         const users = await userQuery.getMany();
 
-        return users;
+        const usersReturn = UserMap.usersToDTO(users);
+
+        return usersReturn;
     }
 }
 
