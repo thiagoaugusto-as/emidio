@@ -12,12 +12,14 @@ class TaskFileRepository implements ITaskFileRepository {
     async create(
         user_id: string,
         task_id: string, 
-        file_name: string
+        file_name: string,
+        sended_task_id: string
     ): Promise<TaskFile> {
         const taskFile = this.repository.create({
             file_name,
             task_id,
             user_id,
+            sended_task_id
         });
 
         await this.repository.save(taskFile);

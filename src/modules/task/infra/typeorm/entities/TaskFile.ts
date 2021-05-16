@@ -13,6 +13,9 @@ class TaskFile {
     task_id: string;
 
     @Column()
+    sended_task_id: string;
+
+    @Column()
     file_name: string;
 
     @CreateDateColumn()
