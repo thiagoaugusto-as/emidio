@@ -9,7 +9,9 @@ class CreateTaskController {
             description,
             discipline,
             pet,
-            title
+            title,
+            class_id,
+            validity
         }: ICreateTaskDTO = request.body;
 
         const createTaskUseCase = container.resolve(CreateTaskUseCase);
@@ -18,7 +20,9 @@ class CreateTaskController {
             description,
             discipline,
             pet,
-            title
+            title,
+            class_id,
+            validity
         });
 
         return response.status(201).json(user);

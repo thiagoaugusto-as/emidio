@@ -14,13 +14,17 @@ class CreateTaskUseCase {
         description,
         discipline,
         pet,
-        title
+        title,
+        class_id,
+        validity
     }: ICreateTaskDTO): Promise<Task> {
         const task = await this.tasksRepository.Create({
             description,
             discipline,
             pet,
-            title
+            title,
+            class_id,
+            validity
         });
 
         return task;

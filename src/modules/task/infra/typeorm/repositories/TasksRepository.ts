@@ -14,13 +14,17 @@ class TasksRepository implements ITasksRepository{
         description,
         discipline,
         pet,
-        title
+        title,
+        class_id,
+        validity
     }: ICreateTaskDTO): Promise<Task> {
         const task = this.repository.create({
             description,
             discipline,
             pet,
-            title
+            title,
+            class_id,
+            validity
         });
 
         await this.repository.save(task);
