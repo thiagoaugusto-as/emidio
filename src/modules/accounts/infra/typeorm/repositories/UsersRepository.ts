@@ -60,8 +60,7 @@ class UsersRepository implements IUsersRepository {
         class_id?: string, 
         isProfessor?: boolean
     ): Promise<IUserResponseDTO[]> {
-        const userQuery = this.repository
-            .createQueryBuilder("u")
+        const userQuery = this.repository.createQueryBuilder("u")
 
         if(name)
             userQuery.andWhere("u.name = :name", { name });

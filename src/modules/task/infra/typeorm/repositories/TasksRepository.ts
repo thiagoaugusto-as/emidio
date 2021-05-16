@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, QueryBuilder, Repository } from "typeorm";
 import { ICreateTaskDTO } from "../../../../dtos/ICreateTaskDTO";
 import { ITasksRepository } from "../../../repositories/ITaskRepository";
 import { Task } from "../entities/Task";
@@ -36,6 +36,39 @@ class TasksRepository implements ITasksRepository{
         const task = await this.repository.findOne({id: task_id});
 
         return task;
+    }
+
+    async FindTasks(
+        description?: string,
+        discipline?: string,
+        pet?: string,
+        title?: string,
+        class_id?: string,
+        validity?: Date
+    ): Promise<Task[]> {
+        const taskQuery = this.repository.createQueryBuilder("t")
+        
+        if(description)
+            taskQuery.andWhere("t.description = :description", { description });
+
+        if(discipline)
+            taskQuery.andWhere("t.discipline = :discipline", { discipline });
+
+        if(pet)
+            taskQuery.andWhere("t.pet = :pet", { pet });
+
+        if(title)
+            taskQuery.andWhere("t.title = :title", { title });
+
+        if(class_id)
+            taskQuery.andWhere("t.class_id = :class_id", { class_id });
+
+        if(validity)
+            taskQuery.andWhere("t.validity = :validity", { validity });
+
+        const tasks = await taskQuery.getMany();
+
+        return tasks;
     }
 }
 

@@ -21,7 +21,6 @@ usersRoutes.post(
 usersRoutes.get(
     "/find",
     ensureAuthenticated,
-    ensureIsProfessor,
     listUserController.handle
 )
 
