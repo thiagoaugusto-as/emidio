@@ -17,15 +17,16 @@ export class CreateTableSendedTask1620135329280 implements MigrationInterface {
                         type: "uuid",
                     },
                     {
-                        name: "files_id",
-                        type: "uuid",
-                    },
-                    {
                         name: "student_id",
                         type: "uuid",
                     },
                     {
-                        name: "rating",
+                        name: "sended",
+                        type: "boolean",
+                        default: false
+                    },
+                    {
+                        name: "avaliation",
                         type: "varchar",
                         isNullable: true
                     },

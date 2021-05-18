@@ -33,9 +33,7 @@ class ClassRepository implements IClassRepository {
     async listClassByid(class_id: string): Promise<IResponseClassDTO> {
         const classFind = await this.repository.findOne({id: class_id});
 
-        const classReturn = ClassMap.toDto(classFind);
-
-        return classReturn;
+        return classFind;
     }
 }
 

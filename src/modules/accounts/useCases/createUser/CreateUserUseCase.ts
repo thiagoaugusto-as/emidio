@@ -5,12 +5,15 @@ import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateUserDTO } from "../../../dtos/ICreateUserDTO";
 import { IUserResponseDTO } from "../../mapper/IUserResponseDTO";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { IClassRepository } from "../../../class/repositories/IClassRepository";
 
 @injectable()
 class CreateUserUseCase {
     constructor(
         @inject("UsersRepository")
-        private usersRepository: IUsersRepository
+        private usersRepository: IUsersRepository,
+        @inject("ClassRepository")
+        private classRepository: IClassRepository
     ) {}
 
     async execute({
@@ -26,6 +29,12 @@ class CreateUserUseCase {
 
         if(userAlreadyExists) {
            throw new AppError("User already exists!"); 
+        }
+
+        const classAlreadyExists = await this.classRepository.listClassByid(class_id);
+
+        if(!classAlreadyExists) {
+            throw new AppError("Class not found!")
         }
 
         const passwordHash = await hash(password, 8);
