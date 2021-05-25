@@ -3,8 +3,8 @@ interface IUserResponseDTO {
     name: string;
     userName: string;
     avatar: string;
-    isProfessor: Boolean;
-    isAdmin: Boolean;
+    isProfessor: boolean;
+    isAdmin: boolean;
     class_id: string;
 }
 

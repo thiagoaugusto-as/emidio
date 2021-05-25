@@ -1,8 +1,10 @@
 import { getRepository, Repository } from "typeorm";
 import { ICreateUserDTO } from "../../../../dtos/ICreateUserDTO";
+import { Task } from "../../../../task/infra/typeorm/entities/Task";
 import { IUserResponseDTO } from "../../../mapper/IUserResponseDTO";
 import { UserMap } from "../../../mapper/UserMap";
 import { IFindUsers, IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUpdateUser } from "../../../useCases/updateUser/UpdateUserUseCase";
 import { User } from "../entities/User";
 
 class UsersRepository implements IUsersRepository {
@@ -80,6 +82,35 @@ class UsersRepository implements IUsersRepository {
 
         return usersReturn;
     }
+
+    async updateUser({
+        avatar,
+        class_id,
+        user_id,
+        name,
+        userName
+    }: IUpdateUser): Promise<User> {
+        if(name) {
+            await this.repository.update(user_id, {name});
+        }
+
+        if(avatar) {
+            await this.repository.update(user_id, {avatar});
+        }
+
+        if(class_id) {
+            await this.repository.update(user_id, {class_id});
+        }
+
+        if(userName) {
+            await this.repository.update(user_id, {userName});
+        }
+
+        const user = await this.repository.findOne({id: user_id});      
+
+        return user;
+    }
+
 }
 
 export { UsersRepository }
