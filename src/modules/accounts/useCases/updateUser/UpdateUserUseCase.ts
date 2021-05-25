@@ -13,7 +13,6 @@ export interface IUpdateUser {
     name?: string;
     userName?: string;
 }
-
 @injectable()
 class UpdateUserUseCase {
     constructor(
@@ -30,32 +29,11 @@ class UpdateUserUseCase {
         name,
         userName
     }: IUpdateUser): Promise<IUserResponseDTO> {
-        //const findUser = await this.usersRepository.findById(user_id);
+        const classRepository = this.classRepository.listClassByid(class_id);
 
-        // if(!user)
-        //     throw new AppError(`User with id '${user_id}' does not exists!`, 404);
-        
-        // if(class_id) {
-        //     const classExists = this.classRepository.listClassByid(class_id);
-
-        //     if(!classExists) {
-        //         throw new AppError("This class does not exists", 404);
-        //     }
-
-        //     user.class_id = class_id;
-        // }
-
-        // if(avatar)
-        //     user.avatar = avatar;
-
-        // if(isProfessor)
-        //     user.isProfessor = isProfessor;
-
-        // if(name)
-        //     user.name = name;
-
-        // if(userName)
-        //     user.userName = userName;
+        if(!classRepository) {
+            throw new AppError("Class does not exists");
+        }
 
         const user = await this.usersRepository.updateUser({
             user_id,
