@@ -34,7 +34,29 @@ class SendedTaskRepository implements ISendedTaskRepository {
         student_id,
         task_id
     }: IFindSendedTask): Promise<SendedTask[]> {
-        throw new Error("Method not implemented.");
+        const taskSendedQuery = this.repository.createQueryBuilder("t")
+        
+        if(id)
+            taskSendedQuery.andWhere("t.id = :id", { id });
+
+        if(avaliation)
+            taskSendedQuery.andWhere("t.avaliation = :avaliation", { avaliation });
+
+        if(sended)
+            taskSendedQuery.andWhere("t.sended = :sended", { sended });
+
+        if(student_id)
+            taskSendedQuery.andWhere("t.student_id = :student_id", { student_id });
+
+        if(class_id)
+            taskSendedQuery.andWhere("t.class_id = :class_id", { class_id });
+
+        if(task_id)
+            taskSendedQuery.andWhere("t.task_id = :task_id", { task_id });
+
+        const tasksSended = await taskSendedQuery.getMany();
+
+        return tasksSended;
     }
 }
 

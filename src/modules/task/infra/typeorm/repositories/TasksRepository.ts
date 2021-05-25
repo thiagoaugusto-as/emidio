@@ -70,6 +70,14 @@ class TasksRepository implements ITasksRepository{
 
         return tasks;
     }
+
+    async UpdateTask(task: Task): Promise<Task> {
+        const taskUpdated = this.repository.create(task);
+
+        await this.repository.save(taskUpdated);
+
+        return taskUpdated;
+    }
 }
 
 export { TasksRepository };

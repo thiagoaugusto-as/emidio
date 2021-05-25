@@ -12,7 +12,8 @@ export interface IFindTasks {
 interface ITasksRepository {
     Create(data: ICreateTaskDTO): Promise<Task>;
     FindById(task_id: string): Promise<Task>;
-    FindTasks(data: IFindTasks): Promise<Task[]>
+    FindTasks(data: IFindTasks): Promise<Task[]>;
+    UpdateTask(task: Task): Promise<Task>;
 }
 
 export { ITasksRepository }

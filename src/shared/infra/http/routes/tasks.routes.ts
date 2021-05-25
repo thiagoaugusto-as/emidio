@@ -10,6 +10,7 @@ import uploadConfig from "../../../../config/upload";
 import { ListTasksController } from "../../../../modules/task/useCases/listTasks/ListTasksController";
 import { ListTaskFilesController } from "../../../../modules/task/useCases/listTaskFiles/ListTaskFilesController";
 import { CreateSendedTaskController } from "../../../../modules/task/useCases/createSendedTask/CreateSendedTaskController";
+import { UpdateTaskController } from "../../../../modules/task/useCases/updateTask/UpdateTaskControllet";
 
 const taskRoutes = Router();
 
@@ -17,6 +18,7 @@ const upload = multer(uploadConfig)
 
 const createTaskFileController = new CreateTaskFileController()
 const createTaskController = new CreateTaskController();
+const updateTaskController = new UpdateTaskController();
 const listTaskController = new ListTasksController();
 const listTaskFilesController = new ListTaskFilesController();
 const createSendedTaskController = new CreateSendedTaskController();
@@ -39,6 +41,13 @@ taskRoutes.post(
     ensureAuthenticated, 
     ensureIsProfessor,
     createTaskController.handle
+);
+
+taskRoutes.put(
+    "/:id",
+    ensureAuthenticated, 
+    ensureIsProfessor,
+    updateTaskController.handle
 );
 
 taskRoutes.get(
