@@ -9,6 +9,7 @@ import { ensureIsProfessor } from "../middlewares/ensureIsProfessor";
 import uploadConfig from "../../../../config/upload";
 import { ListTasksController } from "../../../../modules/task/useCases/listTasks/ListTasksController";
 import { ListTaskFilesController } from "../../../../modules/task/useCases/listTaskFiles/ListTaskFilesController";
+import { CreateSendedTaskController } from "../../../../modules/task/useCases/createSendedTask/CreateSendedTaskController";
 
 const taskRoutes = Router();
 
@@ -18,6 +19,7 @@ const createTaskFileController = new CreateTaskFileController()
 const createTaskController = new CreateTaskController();
 const listTaskController = new ListTasksController();
 const listTaskFilesController = new ListTaskFilesController();
+const createSendedTaskController = new CreateSendedTaskController();
 
 taskRoutes.post(
     "/files",
@@ -43,6 +45,12 @@ taskRoutes.get(
     "/find",
     ensureAuthenticated,
     listTaskController.handle
+);
+
+taskRoutes.post(
+    "/send",
+    ensureAuthenticated,
+    createSendedTaskController.handle
 );
 
 export { taskRoutes };

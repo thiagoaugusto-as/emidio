@@ -10,6 +10,8 @@ import { ITaskFileRepository } from "../../modules/task/repositories/ITaskFileRe
 import { TaskFileRepository } from "../../modules/task/infra/typeorm/repositories/TaskFileRepository";
 import { ClassRepository } from "../../modules/class/infra/typeorm/repositories/ClassRepository";
 import { IClassRepository } from "../../modules/class/repositories/IClassRepository";
+import { SendedTaskRepository } from "../../modules/task/infra/typeorm/repositories/SendedTaskRepository";
+import { ISendedTaskRepository } from "../../modules/task/repositories/ISendedTaskRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -29,4 +31,9 @@ container.registerSingleton<ITaskFileRepository>(
 container.registerSingleton<IClassRepository>(
     "ClassRepository",
     ClassRepository
+);
+
+container.registerSingleton<ISendedTaskRepository>(
+    "SendedTaskRepository",
+    SendedTaskRepository
 );
