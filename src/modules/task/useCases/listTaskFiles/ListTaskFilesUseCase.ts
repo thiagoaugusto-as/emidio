@@ -24,13 +24,13 @@ class ListTaskFilesUseCase {
         sended_task_id,
         task_id
     }: IRequest): Promise<TaskFile[]> {
-        const taskFiles = await this.taskFileRepository.findTasksFiles(
-            id,
-            user_id,
+        const taskFiles = await this.taskFileRepository.findTasksFiles({
             file_name,
+            id,
             sended_task_id,
-            task_id
-        );
+            task_id,
+            user_id
+        });
 
         return taskFiles;
     }

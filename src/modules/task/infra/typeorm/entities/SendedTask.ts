@@ -11,9 +11,6 @@ class SendedTask {
     
     @Column()
     avaliation: string;
-
-    @Column()
-    validity: Date;
     
     @Column()
     task_id: string;

@@ -2,7 +2,7 @@ import { getRepository, Repository } from "typeorm";
 import { ICreateClassDTO } from "../../../../dtos/ICreateClassDTO";
 import { ClassMap } from "../../../mapper/ClassMap";
 import { IResponseClassDTO } from "../../../mapper/IClassResponseDTO";
-import { IClassRepository } from "../../../repositories/IClassRepository";
+import { IClassRepository, IFindClass } from "../../../repositories/IClassRepository";
 import { Class } from "../entities/Class";
 
 class ClassRepository implements IClassRepository {
@@ -34,6 +34,38 @@ class ClassRepository implements IClassRepository {
         const classFind = await this.repository.findOne({id: class_id});
 
         return classFind;
+    }
+
+    async findClass({
+        class_level,
+        class_name,
+        created_at,
+        id,
+        professor_id
+    }: IFindClass): Promise<Class[]> {
+        const classQuery = this.repository.createQueryBuilder("c")
+        
+        if(id)
+            classQuery.andWhere("c.id = :id", { id });
+
+        if(class_level)
+            classQuery.andWhere("c.class_level = :class_level", { class_level });
+
+        if(class_name)
+            classQuery.andWhere("c.class_name = :class_name", { class_name });
+
+        if(created_at)
+            classQuery.andWhere("c.title = :title", { created_at });
+
+        if(created_at)
+            classQuery.andWhere("c.created_at = :created_at", { created_at });
+
+        if(professor_id)
+            classQuery.andWhere("c.validity = :validity", { professor_id });
+
+        const classes = await classQuery.getMany();
+
+        return classes;
     }
 }
 

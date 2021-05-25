@@ -1,5 +1,5 @@
 import { getRepository, Repository } from "typeorm";
-import { ITaskFileRepository } from "../../../repositories/ITaskFileRepository";
+import { IFindTaskFile, ITaskFileRepository } from "../../../repositories/ITaskFileRepository";
 import { TaskFile } from "../entities/TaskFile";
 
 class TaskFileRepository implements ITaskFileRepository {
@@ -31,13 +31,13 @@ class TaskFileRepository implements ITaskFileRepository {
         throw new Error("Method not implemented.");
     }
 
-    async findTasksFiles(
-        id?: string,
-        user_id?: string,
-        file_name?: string,
-        sended_task_id?: string,
-        task_id?: string
-    ): Promise<TaskFile[]> {
+    async findTasksFiles({
+        file_name,
+        id,
+        sended_task_id,
+        task_id,
+        user_id
+    }: IFindTaskFile): Promise<TaskFile[]> {
         const taskFileQuery = this.repository.createQueryBuilder("tf");
 
         if(id)

@@ -1,7 +1,7 @@
 import { ICreateSendedTaskDTO } from "../../dtos/ICreateSendedTaskDTO";
 import { SendedTask } from "../infra/typeorm/entities/SendedTask";
 
-interface IListSendedTask {
+interface IFindSendedTask {
     id?: string;
     task_id?: string;
     student_id?: string;
@@ -12,7 +12,7 @@ interface IListSendedTask {
 
 interface ISendedTaskRepository {
     create(data: ICreateSendedTaskDTO): Promise<SendedTask>
-    list(data: IListSendedTask): Promise<SendedTask[]>
+    list(data: IFindSendedTask): Promise<SendedTask[]>
 }
 
-export { ISendedTaskRepository, IListSendedTask }
+export { ISendedTaskRepository, IFindSendedTask }

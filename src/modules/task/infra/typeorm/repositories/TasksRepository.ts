@@ -1,6 +1,6 @@
 import { getRepository, QueryBuilder, Repository } from "typeorm";
 import { ICreateTaskDTO } from "../../../../dtos/ICreateTaskDTO";
-import { ITasksRepository } from "../../../repositories/ITaskRepository";
+import { IFindTasks, ITasksRepository } from "../../../repositories/ITaskRepository";
 import { Task } from "../entities/Task";
 
 class TasksRepository implements ITasksRepository{
@@ -38,14 +38,14 @@ class TasksRepository implements ITasksRepository{
         return task;
     }
 
-    async FindTasks(
-        description?: string,
-        discipline?: string,
-        pet?: string,
-        title?: string,
-        class_id?: string,
-        validity?: Date
-    ): Promise<Task[]> {
+    async FindTasks({
+        description,
+        discipline,
+        pet,
+        title,
+        class_id,
+        validity
+    }: IFindTasks): Promise<Task[]> {
         const taskQuery = this.repository.createQueryBuilder("t")
         
         if(description)

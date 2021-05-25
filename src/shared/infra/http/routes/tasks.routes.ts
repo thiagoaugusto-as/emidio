@@ -48,7 +48,7 @@ taskRoutes.get(
 );
 
 taskRoutes.post(
-    "/send",
+    "/send-task",
     ensureAuthenticated,
     createSendedTaskController.handle
 );

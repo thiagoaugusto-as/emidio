@@ -2,7 +2,7 @@ import { getRepository, Repository } from "typeorm";
 import { ICreateUserDTO } from "../../../../dtos/ICreateUserDTO";
 import { IUserResponseDTO } from "../../../mapper/IUserResponseDTO";
 import { UserMap } from "../../../mapper/UserMap";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IFindUsers, IUsersRepository } from "../../../repositories/IUsersRepository";
 import { User } from "../entities/User";
 
 class UsersRepository implements IUsersRepository {
@@ -54,12 +54,12 @@ class UsersRepository implements IUsersRepository {
         return users;
     }
 
-    async findUsers(
-        name?: string, 
-        userName?: string, 
-        class_id?: string, 
-        isProfessor?: boolean
-    ): Promise<IUserResponseDTO[]> {
+    async findUsers({
+        name, 
+        userName, 
+        class_id, 
+        isProfessor
+    }: IFindUsers): Promise<IUserResponseDTO[]> {
         const userQuery = this.repository.createQueryBuilder("u")
 
         if(name)

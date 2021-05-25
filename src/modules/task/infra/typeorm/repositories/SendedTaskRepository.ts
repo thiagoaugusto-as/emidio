@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 import { ICreateSendedTaskDTO } from "../../../../dtos/ICreateSendedTaskDTO";
-import { IListSendedTask, ISendedTaskRepository } from "../../../repositories/ISendedTaskRepository";
+import { IFindSendedTask, ISendedTaskRepository } from "../../../repositories/ISendedTaskRepository";
 import { SendedTask } from "../entities/SendedTask";
 
 class SendedTaskRepository implements ISendedTaskRepository {
@@ -33,7 +33,7 @@ class SendedTaskRepository implements ISendedTaskRepository {
         sended,
         student_id,
         task_id
-    }: IListSendedTask): Promise<SendedTask[]> {
+    }: IFindSendedTask): Promise<SendedTask[]> {
         throw new Error("Method not implemented.");
     }
 }

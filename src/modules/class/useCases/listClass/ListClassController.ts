@@ -5,11 +5,23 @@ import { ListClassUseCase } from "./ListClassUseCase";
 
 class ListClassController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { class_id } = request.body;
+        const { 
+            class_level,
+            class_name,
+            created_at,
+            id,
+            professor_id
+         } = request.body;
 
         const listClassUseCase = container.resolve(ListClassUseCase)
 
-        const classe = await listClassUseCase.execute(class_id);
+        const classe = await listClassUseCase.execute({
+            class_level,
+            class_name,
+            created_at,
+            id,
+            professor_id
+        });
 
         return response.json(classe);
     }
