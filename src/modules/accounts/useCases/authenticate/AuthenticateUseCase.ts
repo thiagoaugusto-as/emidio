@@ -18,6 +18,9 @@ interface IResponse {
         name: string;
         username: string;
         isProfessor: boolean;
+        className: string;
+        classLevel: string;
+        classId: string;
     };
     token: string;
 }
@@ -55,7 +58,10 @@ class AuthenticateUseCase {
                 id: user.id,
                 name: user.name,
                 username: user.userName,
-                isProfessor: user.isProfessor
+                isProfessor: user.isProfessor,
+                classId: user.class_id,
+                classLevel: user.classe.class_level,
+                className: user.classe.class_name
             }
         }
 
