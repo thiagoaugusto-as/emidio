@@ -14,8 +14,10 @@ interface IRequest {
 
 interface IResponse {
     user: {
-        name: string,
+        id: string;
+        name: string;
         username: string;
+        isProfessor: boolean;
     };
     token: string;
 }
@@ -50,8 +52,10 @@ class AuthenticateUseCase {
         const tokenReturn: IResponse = {
             token,
             user: {
+                id: user.id,
                 name: user.name,
-                username: user.userName
+                username: user.userName,
+                isProfessor: user.isProfessor
             }
         }
 
