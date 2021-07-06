@@ -8,6 +8,7 @@ export interface IFindTasks {
     title?: string;
     class_id?: string;
     validity?: Date;
+    id?: string;
 }
 interface ITasksRepository {
     Create(data: ICreateTaskDTO): Promise<Task>;

@@ -5,7 +5,7 @@ interface IFindSendedTask {
     id?: string;
     task_id?: string;
     student_id?: string;
-    class_id: string;
+    class_id?: string;
     sended?: Boolean;
     avaliation?: string;
 };

@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from "uuid"
 import { Class } from "../../../../class/infra/typeorm/entities/Class";
 
 @Entity("tasks")
-class Task {
+class Task { 
     @PrimaryColumn()
     id: string;
 

@@ -44,9 +44,13 @@ class TasksRepository implements ITasksRepository{
         pet,
         title,
         class_id,
-        validity
+        validity,
+        id
     }: IFindTasks): Promise<Task[]> {
         const taskQuery = this.repository.createQueryBuilder("t")
+
+        if(id)
+            taskQuery.andWhere("t.id = :id", { id });
         
         if(description)
             taskQuery.andWhere("t.description = :description", { description });
