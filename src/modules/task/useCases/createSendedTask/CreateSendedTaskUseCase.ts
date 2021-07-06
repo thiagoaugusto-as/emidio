@@ -27,8 +27,8 @@ class CreateSendedTaskUseCase {
     }: ICreateSendedTaskDTO) {
         const sendedTaskExists = await this.sendedTaskRepository.list({task_id, student_id});
 
-        if(sendedTaskExists.length===0)
-            throw new AppError("Task aready sended!");
+        if(sendedTaskExists.length!=0)
+            throw new AppError("Task aready sended or already sended");
         
         const userExists = this.usersRepository.findById(student_id);
 

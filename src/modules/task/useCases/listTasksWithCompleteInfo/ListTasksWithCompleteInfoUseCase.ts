@@ -12,6 +12,7 @@ interface IRequest {
 interface IResponse {
     task: Task;
     sended:  boolean;
+    avaliation: string;
 }
 
 @injectable()
@@ -42,11 +43,15 @@ class ListTasksWithCompleteInfoUseCase {
         });
 
         tasks.map((task) => {
-            let taskInfoAux = {task, sended: false};
+            let taskInfoAux = {task, sended: false, avaliation: ""};
             
             sendedTasksUser.map((sendedTask) => {
                 if(task.id === sendedTask.task_id) {
                     taskInfoAux.sended=true;
+                    
+                    if(sendedTask.avaliation) {
+                        taskInfoAux.avaliation=sendedTask.avaliation;
+                    } 
                 }
             });
 
